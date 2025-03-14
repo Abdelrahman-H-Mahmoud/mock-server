@@ -1,0 +1,61 @@
+{
+  "GET:/api/users/:userId": {
+    "responses": [
+      {
+        "response": {
+          "id": ":userId",
+          "name": "John Doe",
+          "email": "john@example.com"
+        },
+        "statusCode": 200,
+        "description": "Default user response",
+        "conditions": {},
+        "createdAt": "2025-03-13T20:31:35.280Z"
+      },
+      {
+        "response": {
+          "id": "123",
+          "name": "Special User",
+          "email": "special@example.com",
+          "role": "admin"
+        },
+        "statusCode": 200,
+        "description": "Special user response",
+        "conditions": {
+          "userId": "123"
+        },
+        "createdAt": "2025-03-13T20:31:35.285Z"
+      },
+      {
+        "response": {
+          "error": "User not found"
+        },
+        "statusCode": 404,
+        "description": "User not found response",
+        "conditions": {
+          "userId": "999"
+        },
+        "createdAt": "2025-03-13T20:31:35.286Z"
+      }
+    ]
+  },
+  "GET:/api/users/:userId/posts/:postId": {
+    "responses": [
+      {
+        "response": {
+          "userId": ":userId",
+          "postId": ":postId",
+          "title": "Special Post",
+          "content": "This is a special post"
+        },
+        "statusCode": 200,
+        "description": "Special user post",
+        "conditions": {
+          "userId": "123",
+          "postId": "456"
+        },
+        "createdAt": "2025-03-13T20:31:35.288Z"
+      }
+    ]
+  }
+}

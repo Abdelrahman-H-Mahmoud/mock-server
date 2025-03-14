@@ -1,0 +1,35 @@
+{
+  "name": "mock-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "prod": "npm run setup && pm2 start ecosystem.config.js --env production",
+    "prod:stop": "pm2 stop mock-server",
+    "prod:restart": "pm2 restart mock-server",
+    "prod:logs": "pm2 logs mock-server",
+    "prod:status": "pm2 status mock-server",
+    "prod:monitor": "pm2 monit mock-server",
+    "prod:list": "pm2 list",
+    "prod:delete": "pm2 delete mock-server",
+    "prod:flush": "pm2 flush",
+    "prod:start": "npm run prod && pm2 logs mock-server",
+    "prod:watch": "pm2 logs mock-server --raw",
+    "prod:json": "pm2 logs mock-server --json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "pm2": "^5.4.3"
+  }
+}
