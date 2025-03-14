@@ -17,7 +17,7 @@ A flexible and configurable mock server for API development and testing. This se
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/mock-server.git
+   git clone https://github.com/Abdelrahman-H-Mahmoud/mock-server
    cd mock-server
    ```
 
@@ -62,7 +62,7 @@ npm run prod:json     # View logs in JSON format
 
 ### Register Mock Route
 ```http
-POST /mock-register
+POST /mock/register
 Content-Type: application/json
 
 {
@@ -83,12 +83,12 @@ Content-Type: application/json
 
 ### List All Routes
 ```http
-GET /mock-routes
+GET /mock/routes
 ```
 
 ### Delete Route Response
 ```http
-DELETE /mock-routes/:responseId
+DELETE /mock/routes/:responseId
 Content-Type: application/json
 
 {
@@ -97,14 +97,19 @@ Content-Type: application/json
 }
 ```
 
+### Flush All Routes
+```http
+DELETE /mock/flush
+```
+
 ### Health Check
 ```http
-GET /health
+GET /system/health
 ```
 
 ### Debug Routes
 ```http
-GET /debug/routes
+GET /system/debug/routes
 ```
 
 ## Example Usage
@@ -112,7 +117,7 @@ GET /debug/routes
 ### Basic Route
 ```javascript
 // Register a basic route
-await axios.post('http://localhost:3000/mock-register', {
+await axios.post('http://localhost:3000/mock/register', {
   path: '/api/users/:userId',
   method: 'GET',
   response: {
@@ -122,12 +127,15 @@ await axios.post('http://localhost:3000/mock-register', {
   },
   description: 'Default user response'
 });
+
+// Flush all routes
+await axios.delete('http://localhost:3000/mock/flush');
 ```
 
 ### Conditional Response
 ```javascript
 // Register a conditional response
-await axios.post('http://localhost:3000/mock-register', {
+await axios.post('http://localhost:3000/mock/register', {
   path: '/api/users/:userId',
   method: 'GET',
   response: {
@@ -166,14 +174,23 @@ const config = {
 .
 ├── src/
 │   ├── server.js           # Main server file
+│   ├── config/
 │   │   └── index.js        # Configuration
+│   ├── routes/
+│   │   ├── mockRoutes.js   # Mock API routes
+│   │   └── systemRoutes.js # System routes
+│   ├── middleware/
+│   │   ├── errorHandler.js    # Error handling
+│   │   └── securityHeaders.js # Security headers
 │   ├── utils/
 │   │   ├── fileStorage.js  # Storage utilities
+│   │   ├── logger.js       # Logging utility
 │   │   └── routeUtils.js   # Route matching utilities
 │   └── data/              # Data storage directory
 ├── scripts/
 │   └── setup.js          # Setup script
 ├── logs/                 # Log files
+├── index.js             # Application entry point
 ├── ecosystem.config.js   # PM2 configuration
 └── package.json
 ```

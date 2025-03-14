@@ -3,7 +3,7 @@ const axios = require('axios');
 async function registerMockRoutes() {
     try {
         // Register default response for any user
-        await axios.post('http://localhost:3000/mock-register', {
+        await axios.post('http://localhost:3000/mock/register', {
             path: '/api/users/:userId',
             method: 'GET',
             response: {
@@ -16,7 +16,7 @@ async function registerMockRoutes() {
         console.log('Registered default user route');
 
         // Register specific response for user with ID "123"
-        await axios.post('http://localhost:3000/mock-register', {
+        await axios.post('http://localhost:3000/mock/register', {
             path: '/api/users/:userId',
             method: 'GET',
             response: {
@@ -32,7 +32,7 @@ async function registerMockRoutes() {
         });
 
         // Register not found response for user with ID "999"
-        await axios.post('http://localhost:3000/mock-register', {
+        await axios.post('http://localhost:3000/mock/register', {
             path: '/api/users/:userId',
             method: 'GET',
             response: {
@@ -46,7 +46,7 @@ async function registerMockRoutes() {
         });
 
         // Register route with multiple parameter conditions
-        await axios.post('http://localhost:3000/mock-register', {
+        await axios.post('http://localhost:3000/mock/register', {
             path: '/api/users/:userId/posts/:postId',
             method: 'GET',
             response: {
